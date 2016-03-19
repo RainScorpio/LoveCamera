@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCameraViewController">
+            <connections>
+                <outlet property="backgroundView" destination="YyZ-qv-25T" id="mCV-TX-PUD"/>
+                <outlet property="cancleTakePhotoButton" destination="15M-YR-NsL" id="nkQ-ed-R37"/>
+                <outlet property="flashButton" destination="1ag-rA-Lau" id="R9R-LT-g6W"/>
+                <outlet property="frontCameraButton" destination="TSo-IU-oyG" id="OAb-wu-XBz"/>
+                <outlet property="takePhotoButton" destination="Rdb-XF-fmX" id="4jT-DQ-E5m"/>
+                <outlet property="usePhotoImage" destination="UP3-iM-cea" id="kvV-da-ke9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YyZ-qv-25T" userLabel="backgroundView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdb-XF-fmX">
+                            <rect key="frame" x="267" y="556" width="67" height="36"/>
+                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="67" id="JEG-3p-BDS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="拍照"/>
+                            <connections>
+                                <action selector="takePhotoButton:" destination="-1" eventType="touchUpInside" id="qyt-da-3nQ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15M-YR-NsL">
+                            <rect key="frame" x="8" y="556" width="77" height="36"/>
+                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="77" id="2ls-5Y-NK8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="取消"/>
+                            <state key="selected" title="重拍"/>
+                            <connections>
+                                <action selector="cancleTakePhotoButton:" destination="-1" eventType="touchUpInside" id="alK-JY-Ex1"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ag-rA-Lau">
+                            <rect key="frame" x="9" y="8" width="51" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="51" id="pJp-gh-Ptj"/>
+                            </constraints>
+                            <state key="normal" title="自动"/>
+                            <connections>
+                                <action selector="flashButton:" destination="-1" eventType="touchUpInside" id="86n-2S-ix4"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSo-IU-oyG">
+                            <rect key="frame" x="544" y="8" width="43" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="43" id="f2N-yX-qMQ"/>
+                            </constraints>
+                            <state key="normal" title="后"/>
+                            <connections>
+                                <action selector="conversionCameraType:" destination="-1" eventType="touchUpInside" id="ylq-vb-aQN"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UP3-iM-cea">
+                            <rect key="frame" x="497" y="556" width="90" height="36"/>
+                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="784-PQ-oQd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="使用照片"/>
+                            <connections>
+                                <action selector="usePhotoImageAction:" destination="-1" eventType="touchUpInside" id="Xb2-zY-iKf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.41801708636894497" green="1" blue="0.8784979328700151" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Rdb-XF-fmX" firstAttribute="baseline" secondItem="UP3-iM-cea" secondAttribute="baseline" id="09e-OS-wCQ"/>
+                        <constraint firstItem="1ag-rA-Lau" firstAttribute="top" secondItem="YyZ-qv-25T" secondAttribute="topMargin" id="17g-K1-pSO"/>
+                        <constraint firstItem="Rdb-XF-fmX" firstAttribute="centerX" secondItem="YyZ-qv-25T" secondAttribute="centerX" id="AbJ-hw-HId"/>
+                        <constraint firstItem="15M-YR-NsL" firstAttribute="leading" secondItem="YyZ-qv-25T" secondAttribute="leadingMargin" id="H8d-GE-Pwi"/>
+                        <constraint firstItem="1ag-rA-Lau" firstAttribute="baseline" secondItem="TSo-IU-oyG" secondAttribute="baseline" id="VpB-Kr-sb0"/>
+                        <constraint firstItem="Rdb-XF-fmX" firstAttribute="baseline" secondItem="15M-YR-NsL" secondAttribute="baseline" id="bNw-V5-X5A"/>
+                        <constraint firstItem="TSo-IU-oyG" firstAttribute="trailing" secondItem="UP3-iM-cea" secondAttribute="trailing" id="bVX-st-naO"/>
+                        <constraint firstAttribute="trailing" secondItem="TSo-IU-oyG" secondAttribute="trailing" constant="13" id="lie-32-WEp"/>
+                        <constraint firstItem="1ag-rA-Lau" firstAttribute="leading" secondItem="YyZ-qv-25T" secondAttribute="leading" constant="9" id="oG4-gx-iDB"/>
+                        <constraint firstItem="UP3-iM-cea" firstAttribute="bottom" secondItem="YyZ-qv-25T" secondAttribute="bottomMargin" id="pM2-gR-a5J"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.99197307224006059" green="1" blue="0.90436117629619273" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YyZ-qv-25T" secondAttribute="trailing" id="Ml8-fj-jGC"/>
+                <constraint firstAttribute="bottom" secondItem="YyZ-qv-25T" secondAttribute="bottom" id="N5r-Us-36e"/>
+                <constraint firstItem="YyZ-qv-25T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iMT-Mz-ide"/>
+                <constraint firstItem="YyZ-qv-25T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wa1-l9-JVW"/>
+            </constraints>
+            <point key="canvasLocation" x="482" y="237"/>
+        </view>
+    </objects>
+</document>
