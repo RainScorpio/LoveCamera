@@ -53,14 +53,15 @@
     
     CIFilter *filter = [_filtersArray objectAtIndex:imageIndex];
     
-    [filter setValue:[CIImage imageWithCGImage:inputImage.CGImage] forKey:@"inputImage"];
+    [filter setValue:[CIImage imageWithCGImage:inputImage.CGImage] forKey:kCIInputImageKey];
     CIImage *outputCIImage = [filter outputImage];
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef temp = [context createCGImage:outputCIImage fromRect:[outputCIImage extent]];
     
-    UIImage *outputImage = [UIImage imageWithCGImage:temp];
+#pragma mark ???
+    UIImage *uiImage = [[UIImage alloc] initWithCGImage:temp scale:1.0 orientation:UIImageOrientationRight];
     CGImageRelease(temp);
-    return outputImage;
+    return uiImage;
 }
 
 - (NSString *)senderLabelText:(NSUInteger)imageIndex {

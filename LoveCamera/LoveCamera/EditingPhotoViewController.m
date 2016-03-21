@@ -9,6 +9,7 @@
 #import "EditingPhotoViewController.h"
 #import "RenderPhotoImage.h"
 #import "PhotoFilterCollectionViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h> /**< 管理照片的系统框架. */
 
 @interface EditingPhotoViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 #pragma mark - UI
@@ -35,7 +36,6 @@
     [super viewDidLoad];
     [_editingImageCollectionView registerClass:[PhotoFilterCollectionViewCell class] forCellWithReuseIdentifier:@"photoFilterCell"];
 
-    // Do any additional setup after loading the view from its nib.
 }
 
 #pragma mark - 给imageView赋值
@@ -78,6 +78,28 @@
     
 }
 
+#pragma mark - 保存照片
+- (IBAction)savePhotoImage:(UIButton *)sender {
+    
+    
+//            CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
+//    
+//            // 此方法iOS9已被废弃, 使用PhotoKit框架代替.
+//            ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+//            if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
+//                // 无权限
+//                return;
+//            }
+//    
+//            ALAssetsLibrary *libray = [[ALAssetsLibrary alloc] init];
+//            [libray writeImageDataToSavedPhotosAlbum:jpegData metadata:(__bridge id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
+//    
+//            }];
+//            
+    
+
+    
+}
 
 
 

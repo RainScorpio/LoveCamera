@@ -20,6 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="boa-zX-ifQ">
+                    <rect key="frame" x="0.0" y="40" width="600" height="456"/>
+                    <color key="backgroundColor" red="0.94387373209391945" green="0.28560246756013186" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFn-ig-u1e">
                     <rect key="frame" x="8" y="8" width="63" height="30"/>
                     <constraints>
@@ -28,16 +32,6 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="&lt; 返回">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-PW-3kh">
-                    <rect key="frame" x="495" y="8" width="97" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="97" id="HA8-s9-JSZ"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="保存/ 分享">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -57,10 +51,19 @@
                         <outlet property="delegate" destination="-1" id="HJ0-AY-BXN"/>
                     </connections>
                 </collectionView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="boa-zX-ifQ">
-                    <rect key="frame" x="0.0" y="40" width="600" height="456"/>
-                    <color key="backgroundColor" red="0.94387373209391945" green="0.28560246756013186" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-PW-3kh" userLabel="保存">
+                    <rect key="frame" x="495" y="5" width="97" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="97" id="HA8-s9-JSZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="保存">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="savePhotoImage:" destination="-1" eventType="touchUpInside" id="6jj-Yi-RvQ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.75082856966914813" blue="0.21211433632869647" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -78,7 +81,7 @@
                 <constraint firstItem="vFn-ig-u1e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="pJl-hb-6Sk"/>
                 <constraint firstItem="boa-zX-ifQ" firstAttribute="top" secondItem="vFn-ig-u1e" secondAttribute="bottom" constant="2" id="pas-Vo-LWl"/>
             </constraints>
-            <point key="canvasLocation" x="244" y="221"/>
+            <point key="canvasLocation" x="260" y="204"/>
         </view>
     </objects>
 </document>
