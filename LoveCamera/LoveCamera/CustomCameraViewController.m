@@ -9,6 +9,7 @@
 #import "CustomCameraViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h> /**< 管理照片的系统框架. */
+#import "EditingPhotoViewController.h"
 
 #define kMainScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kMainScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -36,7 +37,11 @@
 @property (nonatomic, assign) CGFloat beginGestureScale; /**< 开始的缩放比例. */
 @property (nonatomic, assign) CGFloat effectiveScale; /**< 最后的缩放比例. */
 
+
+#pragma mark - 数据
 @property (nonatomic, assign) BOOL isFrontCamera; /**< 判断是否是前置摄像头. */
+@property (nonatomic, strong) NSData *imageData;
+
 
 @end
 
@@ -225,34 +230,35 @@
     
     [stillImageConnection setVideoOrientation:avcaptureOrientation];
     
-    // 控制焦距, 暂时固定为1.
+    // 控制焦距
     [stillImageConnection setVideoScaleAndCropFactor:self.effectiveScale];
     
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:stillImageConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-        NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         
-        if (jpegData) {
+        self.imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+        
+        if (self.imageData) {
             [self changeUI:YES];
             return;
         }
         
         
-        
-        CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
-        
-        // 此方法iOS9已被废弃, 使用PhotoKit框架代替.
-        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-        if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
-            // 无权限
-            return;
-        }
-        
-        ALAssetsLibrary *libray = [[ALAssetsLibrary alloc] init];
-        [libray writeImageDataToSavedPhotosAlbum:jpegData metadata:(__bridge id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
-            
-        }];
-        
-        
+//        
+//        CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
+//        
+//        // 此方法iOS9已被废弃, 使用PhotoKit框架代替.
+//        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+//        if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
+//            // 无权限
+//            return;
+//        }
+//        
+//        ALAssetsLibrary *libray = [[ALAssetsLibrary alloc] init];
+//        [libray writeImageDataToSavedPhotosAlbum:jpegData metadata:(__bridge id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
+//            
+//        }];
+//        
+//        
     }];
     
 }
@@ -368,7 +374,12 @@
 
 - (IBAction)usePhotoImageAction:(UIButton *)sender {
     
+    EditingPhotoViewController *editingVC = [[EditingPhotoViewController alloc] initWithNibName:@"EditingPhotoViewController" bundle:[NSBundle mainBundle]] ;
     
+    
+    [self presentViewController:editingVC animated:YES completion:^{
+        editingVC.editingImageData = self.imageData;
+    }];
 }
 
 

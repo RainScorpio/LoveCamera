@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B7130A941C9BA06400C84531 /* CustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7130A921C9BA06400C84531 /* CustomCameraViewController.m */; };
 		B7130A951C9BA06400C84531 /* CustomCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7130A931C9BA06400C84531 /* CustomCameraViewController.xib */; };
+		B71792CE1C9FDAA000B3F85B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B71792CD1C9FDAA000B3F85B /* OpenGLES.framework */; };
+		B71792DF1C9FE22800B3F85B /* RenderPhotoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B71792DE1C9FE22800B3F85B /* RenderPhotoImage.m */; };
+		B71792E21C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B71792E11C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m */; };
 		B7202DF81C98E78100D7CCAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202DF71C98E78100D7CCAF /* main.m */; };
 		B7202DFB1C98E78100D7CCAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202DFA1C98E78100D7CCAF /* AppDelegate.m */; };
 		B7202DFE1C98E78100D7CCAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202DFD1C98E78100D7CCAF /* ViewController.m */; };
@@ -16,7 +19,8 @@
 		B7202E031C98E78100D7CCAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7202E021C98E78100D7CCAF /* Assets.xcassets */; };
 		B7202E061C98E78100D7CCAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7202E041C98E78100D7CCAF /* LaunchScreen.storyboard */; };
 		B7202E111C98E78100D7CCAF /* LoveCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202E101C98E78100D7CCAF /* LoveCameraUITests.m */; };
-		B73DF1EE1C9C00D400D78673 /* TakePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B73DF1ED1C9C00D400D78673 /* TakePhotoView.m */; };
+		B73DF1F91C9CF73000D78673 /* EditingPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73DF1F71C9CF73000D78673 /* EditingPhotoViewController.m */; };
+		B73DF1FA1C9CF73000D78673 /* EditingPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73DF1F81C9CF73000D78673 /* EditingPhotoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +37,11 @@
 		B7130A911C9BA06400C84531 /* CustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCameraViewController.h; sourceTree = "<group>"; };
 		B7130A921C9BA06400C84531 /* CustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCameraViewController.m; sourceTree = "<group>"; };
 		B7130A931C9BA06400C84531 /* CustomCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCameraViewController.xib; sourceTree = "<group>"; };
+		B71792CD1C9FDAA000B3F85B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		B71792DD1C9FE22800B3F85B /* RenderPhotoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderPhotoImage.h; sourceTree = "<group>"; };
+		B71792DE1C9FE22800B3F85B /* RenderPhotoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderPhotoImage.m; sourceTree = "<group>"; };
+		B71792E01C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFilterCollectionViewCell.h; sourceTree = "<group>"; };
+		B71792E11C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoFilterCollectionViewCell.m; sourceTree = "<group>"; };
 		B7202DF31C98E78100D7CCAF /* LoveCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7202DF71C98E78100D7CCAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7202DF91C98E78100D7CCAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -46,9 +55,10 @@
 		B7202E0C1C98E78100D7CCAF /* LoveCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7202E101C98E78100D7CCAF /* LoveCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveCameraUITests.m; sourceTree = "<group>"; };
 		B7202E121C98E78100D7CCAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B73DF1EC1C9C00D400D78673 /* TakePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePhotoView.h; sourceTree = "<group>"; };
-		B73DF1ED1C9C00D400D78673 /* TakePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePhotoView.m; sourceTree = "<group>"; };
 		B73DF1EF1C9C042200D78673 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		B73DF1F61C9CF73000D78673 /* EditingPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingPhotoViewController.h; sourceTree = "<group>"; };
+		B73DF1F71C9CF73000D78673 /* EditingPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingPhotoViewController.m; sourceTree = "<group>"; };
+		B73DF1F81C9CF73000D78673 /* EditingPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditingPhotoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B71792CE1C9FDAA000B3F85B /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +80,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B71792DB1C9FE16600B3F85B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B71792E01C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.h */,
+				B71792E11C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B71792DC1C9FE17300B3F85B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B71792DD1C9FE22800B3F85B /* RenderPhotoImage.h */,
+				B71792DE1C9FE22800B3F85B /* RenderPhotoImage.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		B7202DEA1C98E78100D7CCAF = {
 			isa = PBXGroup;
 			children = (
@@ -92,13 +121,11 @@
 			children = (
 				B7202DF91C98E78100D7CCAF /* AppDelegate.h */,
 				B7202DFA1C98E78100D7CCAF /* AppDelegate.m */,
-				B7202DFC1C98E78100D7CCAF /* ViewController.h */,
-				B7202DFD1C98E78100D7CCAF /* ViewController.m */,
-				B7130A911C9BA06400C84531 /* CustomCameraViewController.h */,
-				B7130A921C9BA06400C84531 /* CustomCameraViewController.m */,
-				B7130A931C9BA06400C84531 /* CustomCameraViewController.xib */,
-				B73DF1EC1C9C00D400D78673 /* TakePhotoView.h */,
-				B73DF1ED1C9C00D400D78673 /* TakePhotoView.m */,
+				B73DF1F01C9CF61900D78673 /* 首页 */,
+				B73DF1F11C9CF62600D78673 /* 拍照界面 */,
+				B73DF1F21C9CF67400D78673 /* 编辑照片 */,
+				B71792DB1C9FE16600B3F85B /* View */,
+				B71792DC1C9FE17300B3F85B /* Model */,
 				B73DF1EF1C9C042200D78673 /* Utility.h */,
 				B7202DFF1C98E78100D7CCAF /* Main.storyboard */,
 				B7202E021C98E78100D7CCAF /* Assets.xcassets */,
@@ -112,6 +139,7 @@
 		B7202DF61C98E78100D7CCAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B71792CD1C9FDAA000B3F85B /* OpenGLES.framework */,
 				B7202DF71C98E78100D7CCAF /* main.m */,
 			);
 			name = "Supporting Files";
@@ -124,6 +152,35 @@
 				B7202E121C98E78100D7CCAF /* Info.plist */,
 			);
 			path = LoveCameraUITests;
+			sourceTree = "<group>";
+		};
+		B73DF1F01C9CF61900D78673 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				B7202DFC1C98E78100D7CCAF /* ViewController.h */,
+				B7202DFD1C98E78100D7CCAF /* ViewController.m */,
+			);
+			name = "首页";
+			sourceTree = "<group>";
+		};
+		B73DF1F11C9CF62600D78673 /* 拍照界面 */ = {
+			isa = PBXGroup;
+			children = (
+				B7130A911C9BA06400C84531 /* CustomCameraViewController.h */,
+				B7130A921C9BA06400C84531 /* CustomCameraViewController.m */,
+				B7130A931C9BA06400C84531 /* CustomCameraViewController.xib */,
+			);
+			name = "拍照界面";
+			sourceTree = "<group>";
+		};
+		B73DF1F21C9CF67400D78673 /* 编辑照片 */ = {
+			isa = PBXGroup;
+			children = (
+				B73DF1F61C9CF73000D78673 /* EditingPhotoViewController.h */,
+				B73DF1F71C9CF73000D78673 /* EditingPhotoViewController.m */,
+				B73DF1F81C9CF73000D78673 /* EditingPhotoViewController.xib */,
+			);
+			name = "编辑照片";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +268,7 @@
 				B7202E061C98E78100D7CCAF /* LaunchScreen.storyboard in Resources */,
 				B7202E031C98E78100D7CCAF /* Assets.xcassets in Resources */,
 				B7130A951C9BA06400C84531 /* CustomCameraViewController.xib in Resources */,
+				B73DF1FA1C9CF73000D78673 /* EditingPhotoViewController.xib in Resources */,
 				B7202E011C98E78100D7CCAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,11 +287,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B73DF1EE1C9C00D400D78673 /* TakePhotoView.m in Sources */,
+				B71792E21C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m in Sources */,
+				B73DF1F91C9CF73000D78673 /* EditingPhotoViewController.m in Sources */,
 				B7202DFE1C98E78100D7CCAF /* ViewController.m in Sources */,
 				B7202DFB1C98E78100D7CCAF /* AppDelegate.m in Sources */,
 				B7130A941C9BA06400C84531 /* CustomCameraViewController.m in Sources */,
 				B7202DF81C98E78100D7CCAF /* main.m in Sources */,
+				B71792DF1C9FE22800B3F85B /* RenderPhotoImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
