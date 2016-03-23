@@ -12,6 +12,7 @@
 		B71792CE1C9FDAA000B3F85B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B71792CD1C9FDAA000B3F85B /* OpenGLES.framework */; };
 		B71792DF1C9FE22800B3F85B /* RenderPhotoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B71792DE1C9FE22800B3F85B /* RenderPhotoImage.m */; };
 		B71792E21C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B71792E11C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m */; };
+		B71792E71CA0395000B3F85B /* SaveEditedPhotoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B71792E61CA0395000B3F85B /* SaveEditedPhotoImage.m */; };
 		B7202DF81C98E78100D7CCAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202DF71C98E78100D7CCAF /* main.m */; };
 		B7202DFB1C98E78100D7CCAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202DFA1C98E78100D7CCAF /* AppDelegate.m */; };
 		B7202DFE1C98E78100D7CCAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202DFD1C98E78100D7CCAF /* ViewController.m */; };
@@ -42,6 +43,8 @@
 		B71792DE1C9FE22800B3F85B /* RenderPhotoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderPhotoImage.m; sourceTree = "<group>"; };
 		B71792E01C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFilterCollectionViewCell.h; sourceTree = "<group>"; };
 		B71792E11C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		B71792E51CA0395000B3F85B /* SaveEditedPhotoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveEditedPhotoImage.h; sourceTree = "<group>"; };
+		B71792E61CA0395000B3F85B /* SaveEditedPhotoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveEditedPhotoImage.m; sourceTree = "<group>"; };
 		B7202DF31C98E78100D7CCAF /* LoveCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7202DF71C98E78100D7CCAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7202DF91C98E78100D7CCAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 			children = (
 				B71792DD1C9FE22800B3F85B /* RenderPhotoImage.h */,
 				B71792DE1C9FE22800B3F85B /* RenderPhotoImage.m */,
+				B71792E51CA0395000B3F85B /* SaveEditedPhotoImage.h */,
+				B71792E61CA0395000B3F85B /* SaveEditedPhotoImage.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				B73DF1F91C9CF73000D78673 /* EditingPhotoViewController.m in Sources */,
 				B7202DFE1C98E78100D7CCAF /* ViewController.m in Sources */,
 				B7202DFB1C98E78100D7CCAF /* AppDelegate.m in Sources */,
+				B71792E71CA0395000B3F85B /* SaveEditedPhotoImage.m in Sources */,
 				B7130A941C9BA06400C84531 /* CustomCameraViewController.m in Sources */,
 				B7202DF81C98E78100D7CCAF /* main.m in Sources */,
 				B71792DF1C9FE22800B3F85B /* RenderPhotoImage.m in Sources */,

@@ -17,6 +17,6 @@
 
 - (UIImage *)senderOutputImage:(UIImage *)inputImage index:(NSUInteger)imageIndex;
 - (NSString *)senderLabelText:(NSUInteger)imageIndex;
-
++ (instancetype)shareRenderPhotoImage;
 
 @end

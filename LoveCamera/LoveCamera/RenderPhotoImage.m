@@ -10,30 +10,42 @@
 
 @interface RenderPhotoImage ()
 
-//@property (nonatomic, strong)   CIContext *context;
-//@property (nonatomic, strong  CIFilter *colorControlsFilter;
 @property (nonatomic, strong) NSDictionary *filtersDic;
 @property (nonatomic, strong) NSMutableArray *filtersArray;
 
 
 @end
 
+
+
+
 @implementation RenderPhotoImage
+
++ (instancetype)shareRenderPhotoImage {
+    
+    static RenderPhotoImage *photoImage = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        photoImage = [[RenderPhotoImage alloc] init];
+    });
+    return photoImage;
+    
+}
+
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         
-//        self.colorControlsFilter = [CIFilter filterWithName:@"CIColorControls"];
         self.filtersDic = @{
                                      @"None": @"CIColorControls" ,
                                      @"Mono": @"CIPhotoEffectMono",
                                      @"Tonal": @"CIPhotoEffectTonal",
                                      @"Noir": @"CIPhotoEffectNoir",
                                      @"Fade": @"CIPhotoEffectFade",
-                                      @"Chrome": @"CIPhotoEffectChrome",
-                                      @"Process": @"CIPhotoEffectProcess",
-                                      @"Transfer": @"CIPhotoEffectTransfer",
+                                  @"Chrome": @"CIPhotoEffectChrome",
+                                  @"Process": @"CIPhotoEffectProcess",
+                                  @"Transfer": @"CIPhotoEffectTransfer",
                                      @"Instant" :@"CIPhotoEffectInstant",
                                      
                                      };

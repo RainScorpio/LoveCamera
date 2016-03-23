@@ -9,9 +9,10 @@
 #import "EditingPhotoViewController.h"
 #import "RenderPhotoImage.h"
 #import "PhotoFilterCollectionViewCell.h"
-#import <AssetsLibrary/AssetsLibrary.h> /**< 管理照片的系统框架. */
+#import "SaveEditedPhotoImage.h"
+@import Photos; // 导入PhotoKit框架
 
-@interface EditingPhotoViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface EditingPhotoViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver>
 #pragma mark - UI
 
 @property (weak, nonatomic) IBOutlet UIImageView *editingImageView;
@@ -81,23 +82,9 @@
 #pragma mark - 保存照片
 - (IBAction)savePhotoImage:(UIButton *)sender {
     
+    SaveEditedPhotoImage *save = [SaveEditedPhotoImage shareSaveEditedPhotoImage];
+    [save saveEditedPhotoImage:_editingImageView.image];
     
-//            CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
-//    
-//            // 此方法iOS9已被废弃, 使用PhotoKit框架代替.
-//            ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-//            if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
-//                // 无权限
-//                return;
-//            }
-//    
-//            ALAssetsLibrary *libray = [[ALAssetsLibrary alloc] init];
-//            [libray writeImageDataToSavedPhotosAlbum:jpegData metadata:(__bridge id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
-//    
-//            }];
-//            
-    
-
     
 }
 
