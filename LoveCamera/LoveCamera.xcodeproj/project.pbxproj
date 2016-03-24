@@ -20,6 +20,8 @@
 		B7202E031C98E78100D7CCAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7202E021C98E78100D7CCAF /* Assets.xcassets */; };
 		B7202E061C98E78100D7CCAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7202E041C98E78100D7CCAF /* LaunchScreen.storyboard */; };
 		B7202E111C98E78100D7CCAF /* LoveCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202E101C98E78100D7CCAF /* LoveCameraUITests.m */; };
+		B737CF9A1CA37FA60017F772 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B737CF981CA37FA60017F772 /* HomePageViewController.m */; };
+		B737CF9B1CA37FA60017F772 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B737CF991CA37FA60017F772 /* HomePageViewController.xib */; };
 		B73DF1F91C9CF73000D78673 /* EditingPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73DF1F71C9CF73000D78673 /* EditingPhotoViewController.m */; };
 		B73DF1FA1C9CF73000D78673 /* EditingPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73DF1F81C9CF73000D78673 /* EditingPhotoViewController.xib */; };
 /* End PBXBuildFile section */
@@ -58,6 +60,9 @@
 		B7202E0C1C98E78100D7CCAF /* LoveCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7202E101C98E78100D7CCAF /* LoveCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveCameraUITests.m; sourceTree = "<group>"; };
 		B7202E121C98E78100D7CCAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B737CF971CA37FA60017F772 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		B737CF981CA37FA60017F772 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		B737CF991CA37FA60017F772 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
 		B73DF1EF1C9C042200D78673 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		B73DF1F61C9CF73000D78673 /* EditingPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingPhotoViewController.h; sourceTree = "<group>"; };
 		B73DF1F71C9CF73000D78673 /* EditingPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingPhotoViewController.m; sourceTree = "<group>"; };
@@ -164,6 +169,9 @@
 			children = (
 				B7202DFC1C98E78100D7CCAF /* ViewController.h */,
 				B7202DFD1C98E78100D7CCAF /* ViewController.m */,
+				B737CF971CA37FA60017F772 /* HomePageViewController.h */,
+				B737CF981CA37FA60017F772 /* HomePageViewController.m */,
+				B737CF991CA37FA60017F772 /* HomePageViewController.xib */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -274,6 +282,7 @@
 				B7202E031C98E78100D7CCAF /* Assets.xcassets in Resources */,
 				B7130A951C9BA06400C84531 /* CustomCameraViewController.xib in Resources */,
 				B73DF1FA1C9CF73000D78673 /* EditingPhotoViewController.xib in Resources */,
+				B737CF9B1CA37FA60017F772 /* HomePageViewController.xib in Resources */,
 				B7202E011C98E78100D7CCAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +303,7 @@
 			files = (
 				B71792E21C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m in Sources */,
 				B73DF1F91C9CF73000D78673 /* EditingPhotoViewController.m in Sources */,
+				B737CF9A1CA37FA60017F772 /* HomePageViewController.m in Sources */,
 				B7202DFE1C98E78100D7CCAF /* ViewController.m in Sources */,
 				B7202DFB1C98E78100D7CCAF /* AppDelegate.m in Sources */,
 				B71792E71CA0395000B3F85B /* SaveEditedPhotoImage.m in Sources */,

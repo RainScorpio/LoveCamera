@@ -358,12 +358,10 @@
 
 - (IBAction)usePhotoImageAction:(UIButton *)sender {
     
-    EditingPhotoViewController *editingVC = [[EditingPhotoViewController alloc] initWithNibName:@"EditingPhotoViewController" bundle:[NSBundle mainBundle]] ;
-    
-    
-    [self presentViewController:editingVC animated:YES completion:^{
-        editingVC.editingImageData = self.imageData;
-    }];
+    EditingPhotoViewController *editingVC = [[EditingPhotoViewController alloc] init] ;
+
+    [self.navigationController pushViewController:editingVC animated:YES];
+    editingVC.editingImageData = self.imageData;
 }
 
 

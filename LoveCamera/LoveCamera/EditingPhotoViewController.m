@@ -16,7 +16,6 @@
 #pragma mark - UI
 
 @property (weak, nonatomic) IBOutlet UIImageView *editingImageView;
-@property (nonatomic, strong) RenderPhotoImage *renderImage;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *editingImageCollectionView;
 
@@ -26,30 +25,28 @@
 
 
 
+
 // 隐藏状态栏
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_editingImageCollectionView registerClass:[PhotoFilterCollectionViewCell class] forCellWithReuseIdentifier:@"photoFilterCell"];
-
+     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:0];
 }
 
 #pragma mark - 给imageView赋值
 - (void)setEditingImageData:(NSData *)editingImageData {
     
     _editingImageData = editingImageData;
-    
-    self.renderImage = [[RenderPhotoImage alloc] init];
-    
-//    _editingImageView.image = [UIImage imageWithData:_editingImageData];
-    _editingImageView.image = [_renderImage senderOutputImage:[UIImage imageWithData:_editingImageData] index:0];
-    
-    [_editingImageCollectionView reloadData];
+     [_editingImageCollectionView reloadData];
     
     
 }
@@ -66,8 +63,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PhotoFilterCollectionViewCell *photoFilterCell = (PhotoFilterCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"photoFilterCell" forIndexPath:indexPath];
-    photoFilterCell.displayImage = [_renderImage senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item];
-    photoFilterCell.text = [_renderImage senderLabelText:indexPath.item];
+    photoFilterCell.displayImage = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item];
+    photoFilterCell.text = [[RenderPhotoImage shareRenderPhotoImage] senderLabelText:indexPath.item];
     return photoFilterCell;
     
     
@@ -75,7 +72,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-     _editingImageView.image = [_renderImage senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item];
+     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item];
     
 }
 
