@@ -50,6 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBarHidden = YES;
+    
     // 设置session及相关配置.
     [self createAVCaptureSession];
     
@@ -255,7 +257,7 @@
     if (sender.selected) {
         [self changeUI:NO];
     } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
 
     }
     
@@ -359,9 +361,10 @@
 - (IBAction)usePhotoImageAction:(UIButton *)sender {
     
     EditingPhotoViewController *editingVC = [[EditingPhotoViewController alloc] init] ;
-
-    [self.navigationController pushViewController:editingVC animated:YES];
+    
+    
     editingVC.editingImageData = self.imageData;
+    [self.navigationController pushViewController:editingVC animated:YES];
 }
 
 

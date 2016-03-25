@@ -8,8 +8,10 @@
 
 #import "HomePageViewController.h"
 #import "CustomCameraViewController.h"
+#import "Utility.h"
+#import "HomePageView.h"
 
-@interface HomePageViewController ()
+@interface HomePageViewController ()<HomePageViewDelegate>
 
 @end
 
@@ -18,15 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBarHidden = YES;
     
-    UIButton *takePhotoButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    takePhotoButton.frame = CGRectMake(30, 100, 100, 50);
-    [takePhotoButton setTitle:@"拍照" forState:UIControlStateNormal];
-    [takePhotoButton addTarget:self action:@selector(takePhotoAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:takePhotoButton];
+    HomePageView *backgroundView = [[HomePageView alloc] init];
+    backgroundView.delegate = self;
+    [self.view addSubview:backgroundView];
 }
 
-- (void)takePhotoAction:(UIButton *)button {
+
+- (void)takePhoto {
     CustomCameraViewController *ccVC = [[CustomCameraViewController alloc] init];
     [self.navigationController pushViewController:ccVC animated:YES];
 }
