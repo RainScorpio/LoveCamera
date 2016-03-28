@@ -119,20 +119,20 @@
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"photoCell"];
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    
-    
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-
-- (NSInteger)getPhotosCount {
-    
-}
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//    
+//    
+//    
+//}
+//
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//}
+//
+//
+//- (NSInteger)getPhotosCount {
+//    
+//}
 
 
 @end

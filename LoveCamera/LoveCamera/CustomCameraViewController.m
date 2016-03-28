@@ -51,13 +51,13 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = YES;
-    
+    self.takePhotoButton.layer.cornerRadius = self.takePhotoButton.frame.size.width / 2;
     // 设置session及相关配置.
     [self createAVCaptureSession];
     
 #pragma mark - 调整焦距会把其他控件挡住???
     // 创建缩放手势, 调整焦距.
-//    [self addPinchGesture];
+    [self addPinchGesture];
     
     self.isFrontCamera = NO;
     self.beginGestureScale = 1.0f;
@@ -72,8 +72,10 @@
     [super viewWillAppear:YES];
     if (self.session) {
         [self.session startRunning];
-       
+        
     }
+    
+    [self changeUI:NO];
 }
 
 #pragma mark - 隐藏状态栏(iOS9)
@@ -146,12 +148,12 @@
     
 #pragma mark 设置预览图层的填充方式.
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.previewLayer.frame = CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight - 104);
+    self.previewLayer.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
     
     // 将预览图层添加到背景视图上.
     self.backgroundView.layer.masksToBounds = YES;
     [self.backgroundView.layer addSublayer:self.previewLayer];
-    
+    [self.view sendSubviewToBack:_backgroundView];
 }
 
 
@@ -190,7 +192,8 @@
     
     NSLog(@"%f", maxScaleAndCropFactor);
     
-    self.effectiveScale = self.effectiveScale > maxScaleAndCropFactor ? maxScaleAndCropFactor : self.effectiveScale;
+    if (self.effectiveScale > maxScaleAndCropFactor)
+        self.effectiveScale = maxScaleAndCropFactor;
     
     [CATransaction begin];
     [CATransaction setAnimationDuration:.025];
@@ -264,6 +267,7 @@
     
 }
 
+#pragma mark - 闪光灯
 - (IBAction)flashButton:(UIButton *)sender {
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
@@ -274,17 +278,17 @@
         switch (device.flashMode) {
             case AVCaptureFlashModeAuto: {
                 device.flashMode = AVCaptureFlashModeOn;
-                [sender setTitle:@"开启" forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"startFlash.png"] forState:UIControlStateNormal];
                 break;
             }
             case AVCaptureFlashModeOn: {
                 device.flashMode = AVCaptureFlashModeOff;
-                [sender setTitle:@"关闭" forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"closeFlash.png"] forState:UIControlStateNormal];
                 break;
             }
             case AVCaptureFlashModeOff: {
                 device.flashMode = AVCaptureFlashModeAuto;
-                [sender setTitle:@"自动" forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"autoFlash.png"] forState:UIControlStateNormal];
                 break;
             }
             default:
@@ -305,13 +309,15 @@
 - (IBAction)conversionCameraType:(UIButton *)sender {
     
     
-    AVCaptureDevicePosition desiredPosition;
+    
+   AVCaptureDevicePosition desiredPosition;
+
     if (self.isFrontCamera) {
         desiredPosition = AVCaptureDevicePositionBack;
-        [sender setTitle:@"后" forState:UIControlStateNormal];
+        //        [sender setTitle:@"后" forState:UIControlStateNormal];
     } else {
         desiredPosition = AVCaptureDevicePositionFront;
-        [sender setTitle:@"前" forState:UIControlStateNormal];
+        //        [sender setTitle:@"前" forState:UIControlStateNormal];
     }
     
     for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
@@ -326,6 +332,22 @@
             break;
         }
     }
+    
+//    [self.session stopRunning];
+    [UIView transitionWithView:self.backgroundView duration:0.6 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        
+        
+
+        
+        
+
+        
+        
+        
+    } completion:^(BOOL finished) {
+        
+//        [self.session startRunning];
+            }];
     
     self.isFrontCamera = !self.isFrontCamera;
     

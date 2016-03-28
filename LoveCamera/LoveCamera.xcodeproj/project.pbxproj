@@ -19,6 +19,11 @@
 		B7202E031C98E78100D7CCAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7202E021C98E78100D7CCAF /* Assets.xcassets */; };
 		B7202E061C98E78100D7CCAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7202E041C98E78100D7CCAF /* LaunchScreen.storyboard */; };
 		B7202E111C98E78100D7CCAF /* LoveCameraUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7202E101C98E78100D7CCAF /* LoveCameraUITests.m */; };
+		B722B8511CA8CF14003DEF8A /* closeFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = B722B8501CA8CF14003DEF8A /* closeFlash.png */; };
+		B722B8561CA8D2ED003DEF8A /* autoFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = B722B8551CA8D2ED003DEF8A /* autoFlash.png */; };
+		B722B8581CA8D2FA003DEF8A /* startFlash.png in Resources */ = {isa = PBXBuildFile; fileRef = B722B8571CA8D2FA003DEF8A /* startFlash.png */; };
+		B722B85A1CA8D405003DEF8A /* change.png in Resources */ = {isa = PBXBuildFile; fileRef = B722B8591CA8D405003DEF8A /* change.png */; };
+		B722B85C1CA8D905003DEF8A /* paizhao.png in Resources */ = {isa = PBXBuildFile; fileRef = B722B85B1CA8D905003DEF8A /* paizhao.png */; };
 		B737CF9A1CA37FA60017F772 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B737CF981CA37FA60017F772 /* HomePageViewController.m */; };
 		B737CF9B1CA37FA60017F772 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B737CF991CA37FA60017F772 /* HomePageViewController.xib */; };
 		B737CF9E1CA389FA0017F772 /* homepage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B737CF9D1CA389FA0017F772 /* homepage.jpg */; };
@@ -59,6 +64,11 @@
 		B7202E0C1C98E78100D7CCAF /* LoveCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7202E101C98E78100D7CCAF /* LoveCameraUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveCameraUITests.m; sourceTree = "<group>"; };
 		B7202E121C98E78100D7CCAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B722B8501CA8CF14003DEF8A /* closeFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeFlash.png; sourceTree = "<group>"; };
+		B722B8551CA8D2ED003DEF8A /* autoFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = autoFlash.png; sourceTree = "<group>"; };
+		B722B8571CA8D2FA003DEF8A /* startFlash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startFlash.png; sourceTree = "<group>"; };
+		B722B8591CA8D405003DEF8A /* change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change.png; sourceTree = "<group>"; };
+		B722B85B1CA8D905003DEF8A /* paizhao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paizhao.png; sourceTree = "<group>"; };
 		B737CF971CA37FA60017F772 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		B737CF981CA37FA60017F772 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		B737CF991CA37FA60017F772 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
@@ -93,6 +103,8 @@
 		B71792DB1C9FE16600B3F85B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B7CC81741CA39A9C00401D3E /* HomePageView.h */,
+				B7CC81751CA39A9C00401D3E /* HomePageView.m */,
 				B71792E01C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.h */,
 				B71792E11C9FF29A00B3F85B /* PhotoFilterCollectionViewCell.m */,
 			);
@@ -170,7 +182,12 @@
 		B737CF9C1CA389ED0017F772 /* 图片 */ = {
 			isa = PBXGroup;
 			children = (
+				B722B8501CA8CF14003DEF8A /* closeFlash.png */,
+				B722B8551CA8D2ED003DEF8A /* autoFlash.png */,
+				B722B8571CA8D2FA003DEF8A /* startFlash.png */,
+				B722B8591CA8D405003DEF8A /* change.png */,
 				B737CF9D1CA389FA0017F772 /* homepage.jpg */,
+				B722B85B1CA8D905003DEF8A /* paizhao.png */,
 			);
 			name = "图片";
 			sourceTree = "<group>";
@@ -181,8 +198,6 @@
 				B737CF971CA37FA60017F772 /* HomePageViewController.h */,
 				B737CF981CA37FA60017F772 /* HomePageViewController.m */,
 				B737CF991CA37FA60017F772 /* HomePageViewController.xib */,
-				B7CC81741CA39A9C00401D3E /* HomePageView.h */,
-				B7CC81751CA39A9C00401D3E /* HomePageView.m */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -289,11 +304,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B722B85C1CA8D905003DEF8A /* paizhao.png in Resources */,
+				B722B8581CA8D2FA003DEF8A /* startFlash.png in Resources */,
 				B7202E061C98E78100D7CCAF /* LaunchScreen.storyboard in Resources */,
 				B7202E031C98E78100D7CCAF /* Assets.xcassets in Resources */,
+				B722B8561CA8D2ED003DEF8A /* autoFlash.png in Resources */,
 				B7130A951C9BA06400C84531 /* CustomCameraViewController.xib in Resources */,
 				B737CF9E1CA389FA0017F772 /* homepage.jpg in Resources */,
 				B73DF1FA1C9CF73000D78673 /* EditingPhotoViewController.xib in Resources */,
+				B722B85A1CA8D405003DEF8A /* change.png in Resources */,
+				B722B8511CA8CF14003DEF8A /* closeFlash.png in Resources */,
 				B737CF9B1CA37FA60017F772 /* HomePageViewController.xib in Resources */,
 				B7202E011C98E78100D7CCAF /* Main.storyboard in Resources */,
 			);

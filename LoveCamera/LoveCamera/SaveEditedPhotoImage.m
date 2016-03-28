@@ -7,9 +7,9 @@
 //
 
 #import "SaveEditedPhotoImage.h"
-@import Photos;
 
-@interface SaveEditedPhotoImage ()<PHPhotoLibraryChangeObserver> /**< 协议用于通知照片库中发生的变化. */
+@interface SaveEditedPhotoImage ()
+//<PHPhotoLibraryChangeObserver> /**< 协议用于通知照片库中发生的变化. */
 
 @property (nonatomic, strong) UIImage *saveImage;
 @property (nonatomic, strong) PHAssetCollection *albumAssetCollection;
@@ -23,11 +23,7 @@
 static NSString * const AdjustmentFormatIdentifier = @"com.rain.LoveCamera";
 static NSString * const MyselfAlbumName = @"LoveCamera";
 static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
-- (void)dealloc {
-    
-    /** 注销照片库发生改变的通知. */
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-}
+
 
 + (instancetype)shareSaveEditedPhotoImage {
     static SaveEditedPhotoImage *save = nil;
@@ -43,9 +39,7 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
     self = [super init];
     if (self) {
         
-        /** 注册照片库发生改变的通知. */
-        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-        
+               
     }
     return self;
 }
@@ -72,6 +66,7 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
         if (!success) {
             NSLog(@"Error creating ablum: %@", error);
         } else {
+            NSLog(@"创建成功.");
             PHFetchResult *loveCameraAssetFetchResult = [PHCollection fetchTopLevelUserCollectionsWithOptions:nil];
             PHCollection *myCollection = loveCameraAssetFetchResult.lastObject;
             [[NSUserDefaults standardUserDefaults] setObject:myCollection.localIdentifier forKey:localIdentifier];
@@ -84,11 +79,7 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
     
 }
 
-- (void)userDefault {
-    
-    
-    
-}
+
 
 - (void)saveAction:(UIImage *)image {
     
@@ -120,15 +111,14 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
 - (void)saveEditedPhotoImage:(UIImage *)image {
     
     self.saveImage = image;
-    NSString *identifier = [[NSUserDefaults standardUserDefaults] stringForKey:localIdentifier];
-    if (!identifier ) {
+    
+    self.albumAssetCollection = [self getLoveCameraAssetCollection];
+    if (!_albumAssetCollection) {
         
         [self createNewAlbum];
         return;
     }
     
-    PHFetchResult *loveResult = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[identifier] options:nil];
-    self.albumAssetCollection = loveResult.firstObject;
     [self saveAction:image];
 
     
@@ -137,33 +127,11 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
 }
 
 
-#pragma mark - PHPhotoLibraryChangeObserver代理方法
-- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+- (PHAssetCollection *)getLoveCameraAssetCollection {
     
-    
-
-    PHObjectChangeDetails *change = [changeInstance changeDetailsForObject:self.albumAssetCollection];
-    if (change.assetContentChanged) {
-        
-        /** 在后台时照片可能调用这个方法. */
-        /** 在主线程更改UI. */
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSLog(@"保存成功!");
-            
-            
-        });
-        
-    }
-    
-    
-    
-    
-    
-    
-
-
+    return [[PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[[[NSUserDefaults standardUserDefaults] stringForKey:localIdentifier]] options:nil] firstObject];
 }
+
 
 
 

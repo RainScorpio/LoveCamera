@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCameraViewController">
@@ -21,65 +21,74 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="YyZ-qv-25T" userLabel="backgroundView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1ag-rA-Lau">
+                    <rect key="frame" x="8" y="8" width="28" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Rdb-XF-fmX">
-                            <rect key="frame" x="127" y="524" width="67" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="拍照"/>
-                            <connections>
-                                <action selector="takePhotoButton:" destination="-1" eventType="touchUpInside" id="qyt-da-3nQ"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="15M-YR-NsL">
-                            <rect key="frame" x="8" y="524" width="77" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="取消"/>
-                            <state key="selected" title="重拍"/>
-                            <connections>
-                                <action selector="cancleTakePhotoButton:" destination="-1" eventType="touchUpInside" id="alK-JY-Ex1"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1ag-rA-Lau">
-                            <rect key="frame" x="9" y="8" width="51" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="自动"/>
-                            <connections>
-                                <action selector="flashButton:" destination="-1" eventType="touchUpInside" id="86n-2S-ix4"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TSo-IU-oyG">
-                            <rect key="frame" x="264" y="8" width="43" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="后"/>
-                            <connections>
-                                <action selector="conversionCameraType:" destination="-1" eventType="touchUpInside" id="ylq-vb-aQN"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UP3-iM-cea">
-                            <rect key="frame" x="217" y="524" width="90" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.9847589366217715" blue="0.74954362672170327" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="使用照片"/>
-                            <connections>
-                                <action selector="usePhotoImageAction:" destination="-1" eventType="touchUpInside" id="Xb2-zY-iKf"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.41801708636894497" green="1" blue="0.8784979328700151" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="autoFlash.png"/>
+                    <connections>
+                        <action selector="flashButton:" destination="-1" eventType="touchUpInside" id="86n-2S-ix4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="15M-YR-NsL">
+                    <rect key="frame" x="8" y="510" width="77" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                    </state>
+                    <state key="selected" title="重拍"/>
+                    <connections>
+                        <action selector="cancleTakePhotoButton:" destination="-1" eventType="touchUpInside" id="alK-JY-Ex1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TSo-IU-oyG">
+                    <rect key="frame" x="258" y="0.0" width="62" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    <inset key="contentEdgeInsets" minX="20" minY="8" maxX="10" maxY="0.0"/>
+                    <state key="normal" image="change.png"/>
+                    <connections>
+                        <action selector="conversionCameraType:" destination="-1" eventType="touchUpInside" id="ylq-vb-aQN"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UP3-iM-cea">
+                    <rect key="frame" x="230" y="510" width="90" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="使用照片">
+                        <color key="titleColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                    </state>
+                    <connections>
+                        <action selector="usePhotoImageAction:" destination="-1" eventType="touchUpInside" id="Xb2-zY-iKf"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" id="YyZ-qv-25T" userLabel="backgroundView">
+                    <rect key="frame" x="0.0" y="42" width="320" height="436"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.327376214" green="1" blue="0.39657652249999997" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rdb-XF-fmX">
+                    <rect key="frame" x="128" y="496" width="64" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.14840403163367044" green="0.55931897797230734" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="paizhao.png"/>
+                    <connections>
+                        <action selector="takePhotoButton:" destination="-1" eventType="touchUpInside" id="qyt-da-3nQ"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.99197307224006059" green="1" blue="0.90436117629619273" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="388" y="184"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="388" y="180"/>
         </view>
     </objects>
+    <resources>
+        <image name="autoFlash.png" width="64" height="64"/>
+        <image name="change.png" width="64" height="64"/>
+        <image name="paizhao.png" width="64" height="64"/>
+    </resources>
 </document>

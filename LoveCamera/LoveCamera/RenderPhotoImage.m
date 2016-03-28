@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSDictionary *filtersDic;
 @property (nonatomic, strong) NSMutableArray *filtersArray;
+@property (nonatomic, strong) NSArray *filterTitle;
 
 
 @end
@@ -43,14 +44,29 @@
                                      @"Tonal": @"CIPhotoEffectTonal",
                                      @"Noir": @"CIPhotoEffectNoir",
                                      @"Fade": @"CIPhotoEffectFade",
-                                  @"Chrome": @"CIPhotoEffectChrome",
-                                  @"Process": @"CIPhotoEffectProcess",
-                                  @"Transfer": @"CIPhotoEffectTransfer",
+                                     @"Chrome": @"CIPhotoEffectChrome",
+                                     @"Process": @"CIPhotoEffectProcess",
+                                     @"Transfer": @"CIPhotoEffectTransfer",
                                      @"Instant" :@"CIPhotoEffectInstant",
                                      
+                                     @"Matrix": @"CIColorMatrix",
+                                     
+                                     @"SRGBToneCure": @"CILinearToSRGBToneCurve",
+                                     @"TemperatureAndTint": @"CITemperatureAndTint",
+                                     
+                                     
+                                     @"CIColorInvert": @"CIColorInvert",
+                                     
+                                     
+                                     @"CIDepthOfField": @"CIDepthOfField",
+                                     
+                                     @"CILineOverlay": @"CILineOverlay"
                                      };
+        
+        //kCICategoryStillImage, kCICategoryBuiltIn, kCICategoryFilterGenerator
+//        self.filterTitle = [CIFilter filterNamesInCategories:@[kCICategoryStillImage]];
         self.filtersArray = [NSMutableArray array];
-        for (NSString *key in _filtersDic.allKeys) {
+        for (NSString *key in _filtersDic) {
             
             [_filtersArray addObject:[CIFilter filterWithName:[_filtersDic objectForKey:key]]];
             

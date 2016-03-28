@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@import Photos;
 
 @interface SaveEditedPhotoImage : NSObject
 
 + (instancetype)shareSaveEditedPhotoImage;
 - (void)saveEditedPhotoImage:(UIImage *)image;
-
+- (PHAssetCollection *)getLoveCameraAssetCollection;
 @end
