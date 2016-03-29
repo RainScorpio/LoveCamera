@@ -25,7 +25,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 
-@property (strong, nonatomic) UILabel *alertLabel;
 
 @property (nonatomic, strong) NSMutableArray *savedImages;
 @property (nonatomic, strong) NSIndexPath *didSelectIndexPath;
@@ -35,11 +34,12 @@
 @implementation EditingPhotoViewController
 
 
-//- (void)dealloc {
-//    /** 注销照片库发生改变的通知. */
-//    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-//
-//}
+
+- (void)viewDidDisappear:(BOOL)animated {
+        /** 注销照片库发生改变的通知. */
+        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+
+}
 
 // 隐藏状态栏
 - (BOOL)prefersStatusBarHidden {
@@ -57,13 +57,27 @@
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
     [_editingImageCollectionView registerClass:[PhotoFilterCollectionViewCell class] forCellWithReuseIdentifier:@"photoFilterCell"];
-     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:0];
+     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:0 front:self.isFront];
 
     self.savedImages = [NSMutableArray array];
     self.didSelectIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    self.editingImageView.userInteractionEnabled = YES;
+    [self addSwipeGestureRecognizer];
 }
 
+#pragma mark - 滑动手势 
+- (void)addSwipeGestureRecognizer {
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.editingImageView addGestureRecognizer:swipe];
+}
 
+- (void)swipeAction:(UISwipeGestureRecognizer *)swipe {
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.editingImageView.image] applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+}
 
 
 
@@ -89,8 +103,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PhotoFilterCollectionViewCell *photoFilterCell = (PhotoFilterCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"photoFilterCell" forIndexPath:indexPath];
-    photoFilterCell.displayImage = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item];
-    photoFilterCell.text = [[RenderPhotoImage shareRenderPhotoImage] senderLabelText:indexPath.item];
+    photoFilterCell.displayImage = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item front:self.isFront];
+//    photoFilterCell.text = [[RenderPhotoImage shareRenderPhotoImage] senderLabelText:indexPath.item];
     return photoFilterCell;
     
     
@@ -98,7 +112,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.didSelectIndexPath = indexPath;
-     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item];
+     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item front:self.isFront];
     
     if ([self.savedImages containsObject:indexPath]) {
         [self.saveButton setTitle:@"     已保存" forState:UIControlStateNormal];
@@ -174,15 +188,7 @@
  
 }
 
-- (void)creatAlertLabelWithTitle:(NSString *)title {
-    
-    self.alertLabel = [[UILabel alloc] init];
-    _alertLabel.text = title;
-    _alertLabel.textColor = [UIColor whiteColor];
-    _alertLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:_alertLabel];
-    
-}
+
 
 #pragma mark - 返回按钮
 - (IBAction)backAction:(UIButton *)sender {

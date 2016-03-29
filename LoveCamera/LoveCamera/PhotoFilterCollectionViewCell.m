@@ -28,8 +28,8 @@
         self.contentView.layer.masksToBounds = YES;
         self.displayImageView = [[UIImageView alloc] init];
         [self.contentView addSubview:_displayImageView];
-        self.renderLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:_renderLabel];
+//        self.renderLabel = [[UILabel alloc] init];
+//        [self.contentView addSubview:_renderLabel];
     }
     return self;
 }
@@ -42,10 +42,10 @@
     _renderLabel.font = [UIFont italicSystemFontOfSize:15];
     _renderLabel.textAlignment = NSTextAlignmentCenter;
     
-    UIBezierPath *bezier = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, _renderLabel.frame.size.width, _renderLabel.frame.size.height)];
-    _renderLabel.layer.shadowPath = bezier.CGPath;
-    _renderLabel.layer.shadowColor = [UIColor grayColor].CGColor;
-    _renderLabel.layer.shadowOpacity = 0.5;
+//    UIBezierPath *bezier = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, _renderLabel.frame.size.width, _renderLabel.frame.size.height)];
+//    _renderLabel.layer.shadowPath = bezier.CGPath;
+//    _renderLabel.layer.shadowColor = [UIColor grayColor].CGColor;
+//    _renderLabel.layer.shadowOpacity = 0.5;
 }
 
 
@@ -56,10 +56,10 @@
     
 }
 
-- (void)setText:(NSString *)text {
-    _text = text;
-    self.renderLabel.text = _text;
-}
+//- (void)setText:(NSString *)text {
+//    _text = text;
+//    self.renderLabel.text = _text;
+//}
 
 #pragma mark - 设置圆角
 

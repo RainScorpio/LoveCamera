@@ -77,7 +77,10 @@
     return self;
 }
 
-- (UIImage *)senderOutputImage:(UIImage *)inputImage index:(NSUInteger)imageIndex {
+- (UIImage *)senderOutputImage:(UIImage *)inputImage index:(NSUInteger)imageIndex front:(BOOL)isFront{
+    
+    NSLog(@"%ld", (long)inputImage.imageOrientation);
+    NSLog(@"%d", inputImage.flipsForRightToLeftLayoutDirection);
     
     CIFilter *filter = [_filtersArray objectAtIndex:imageIndex];
     
@@ -86,8 +89,14 @@
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef temp = [context createCGImage:outputCIImage fromRect:[outputCIImage extent]];
     
-#pragma mark ???
+    
+    if (isFront) {
+        UIImage *uiImage = [[UIImage alloc] initWithCGImage:temp scale:1.0 orientation:UIImageOrientationLeftMirrored];
+        CGImageRelease(temp);
+        return uiImage;
+    }
     UIImage *uiImage = [[UIImage alloc] initWithCGImage:temp scale:1.0 orientation:UIImageOrientationRight];
+    
     CGImageRelease(temp);
     return uiImage;
 }

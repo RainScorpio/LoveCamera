@@ -11,6 +11,7 @@
 @protocol HomePageViewDelegate <NSObject>
 
 - (void)takePhoto;
+- (void)fetchPhotoes;
 
 @end
 

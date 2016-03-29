@@ -50,7 +50,7 @@
                         <outlet property="delegate" destination="-1" id="HJ0-AY-BXN"/>
                     </connections>
                 </collectionView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="boa-zX-ifQ">
+                <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="boa-zX-ifQ">
                     <rect key="frame" x="0.0" y="40" width="600" height="456"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>

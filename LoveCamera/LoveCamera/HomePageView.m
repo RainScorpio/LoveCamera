@@ -94,11 +94,36 @@
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longAction:)];
     [_headImageView addGestureRecognizer:longPress];
     
+    
+#pragma mark - 照片库按钮
+    UIView *photoesView = [[UIView alloc] initWithFrame:CGRectMake(kMainScreenWidth * 0.2, (kMainScreenHeight * 0.5) + ((kMainScreenHeight * 0.5) - 100) / 3 + 100, kMainScreenWidth * 0.6, 50)];
+    photoesView.alpha = 0.2;
+    photoesView.backgroundColor = [UIColor whiteColor];
+    photoesView.layer.cornerRadius = 25;
+    photoesView.layer.masksToBounds = YES;
+    [self addSubview:photoesView];
+    
+    UIButton *photoesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    photoesButton.frame = photoesView.frame;
+    [photoesButton setTitle:@"选择照片" forState:UIControlStateNormal];
+    [photoesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    photoesButton.titleLabel.font = [UIFont italicSystemFontOfSize:30];
+    [photoesButton addTarget:self action:@selector(photoesAction:) forControlEvents:UIControlEventTouchUpInside];
+    [photoesButton setBackgroundColor:[UIColor clearColor]];
+    
+    [self addSubview:photoesButton];
+
+    
+    
 }
 
 #pragma mark - 拍照按钮
 - (void)takePhotoAction:(UIButton *)button {
     [self.delegate takePhoto];
+}
+
+- (void)photoesAction:(UIButton *)button {
+    [self.delegate fetchPhotoes];
 }
 
 #pragma mark - 长按手势

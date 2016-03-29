@@ -14,7 +14,9 @@
 #define kMainScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kMainScreenHeight  [UIScreen mainScreen].bounds.size.height
 
-@interface CustomCameraViewController ()<UIGestureRecognizerDelegate>
+@interface CustomCameraViewController ()<UIGestureRecognizerDelegate, AVCaptureMetadataOutputObjectsDelegate>
+
+
 
 #pragma mark - 界面控件.
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
@@ -34,6 +36,8 @@
 @property (nonatomic, strong) AVCaptureDeviceInput *videoInput; /**< 调用所有输入设备, 例如摄像头和麦克风. */
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer; /**< 镜头捕捉得到的预览图层. */
 @property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput; /**< 照片输出流, 用于输出图像. */
+@property (nonatomic, strong) AVCaptureDevice *device;
+
 @property (nonatomic, assign) CGFloat beginGestureScale; /**< 开始的缩放比例. */
 @property (nonatomic, assign) CGFloat effectiveScale; /**< 最后的缩放比例. */
 
@@ -47,19 +51,23 @@
 
 @implementation CustomCameraViewController
 
+//static NSString * const sq = @"com.rain.LoveCamera";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = YES;
     self.takePhotoButton.layer.cornerRadius = self.takePhotoButton.frame.size.width / 2;
     // 设置session及相关配置.
+    self.sessionQueue = dispatch_queue_create("com.rain.LoveCamera", DISPATCH_QUEUE_SERIAL);
+    
     [self createAVCaptureSession];
     
 #pragma mark - 调整焦距会把其他控件挡住???
     // 创建缩放手势, 调整焦距.
     [self addPinchGesture];
     
-    self.isFrontCamera = NO;
+    self.isFrontCamera = YES;
     self.beginGestureScale = 1.0f;
     self.effectiveScale = 1.0f;
     self.usePhotoImage.hidden = YES;
@@ -71,7 +79,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     if (self.session) {
-        [self.session startRunning];
+        dispatch_async(_sessionQueue, ^{
+            
+            [self.session startRunning];
+        });
         
     }
     
@@ -87,13 +98,13 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidAppear:YES];
     if (self.session) {
-        [self.session stopRunning];
+            dispatch_async(_sessionQueue, ^{
+                
+                [self.session stopRunning];
+            });
     }
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 
 #pragma mark - 对输入输出进行设置.
@@ -106,7 +117,7 @@
     self.session = [[AVCaptureSession alloc] init];
     
     // 设置session允许定义音频视频录制的质量.
-//    [self.session setSessionPreset:AVCaptureSessionPresetHigh];
+    [self.session setSessionPreset:AVCaptureSessionPresetPhoto];
     
     // 创建设备对象.
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -127,8 +138,16 @@
         NSLog(@"%s, %d: %@", __func__, __LINE__, error);
     }
     
+    
+    
+
+    
     // 创建输出图像对象.
     self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
+    
+    
+    
+   
     
     // 输出设置: AVVideoCodecJPEG   输出jpeg格式图片
     NSDictionary *outoutSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG, AVVideoCodecKey, nil];
@@ -148,21 +167,61 @@
     
 #pragma mark 设置预览图层的填充方式.
     [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.previewLayer.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
+    self.previewLayer.frame = CGRectMake(0, 0, kMainScreenWidth, self.backgroundView.frame.size.height);
     
     // 将预览图层添加到背景视图上.
     self.backgroundView.layer.masksToBounds = YES;
     [self.backgroundView.layer addSublayer:self.previewLayer];
     [self.view sendSubviewToBack:_backgroundView];
+    
+    
+    for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+        if ([d position] == AVCaptureDevicePositionFront) {
+            [self.previewLayer.session beginConfiguration];
+            AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:d error:nil];
+            for (AVCaptureInput *oldInput in self.previewLayer.session.inputs) {
+                [[self.previewLayer session] removeInput:oldInput];
+            }
+            [self.previewLayer.session addInput:input];
+            [self.previewLayer.session commitConfiguration];
+            break;
+        }
+    }
+    
+    
+    [self captureFace];
 }
 
 
 
-#pragma mark - 创建缩放手势
+#pragma mark - 创建缩放和点击手势
 - (void)addPinchGesture {
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
     pinch.delegate = self;
     [self.backgroundView addGestureRecognizer:pinch];
+    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+//    [self.backgroundView addGestureRecognizer:tap];
+}
+
+#pragma mark - 手动对焦
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    CGPoint point = [tap locationInView:self.backgroundView];
+    CGPoint autoPoint = [self.previewLayer captureDevicePointOfInterestForPoint:point];
+    [device lockForConfiguration:nil];
+    device.focusPointOfInterest = autoPoint;
+    device.focusMode = AVCaptureFocusModeAutoFocus;
+    
+    
+    
+    [device setExposureModeCustomWithDuration:device.activeFormat.maxExposureDuration ISO:device.activeFormat.maxISO completionHandler:nil];
+    [device setFocusModeLockedWithLensPosition:0.5 completionHandler:^(CMTime syncTime) {
+        
+    }];
+    
+    [device unlockForConfiguration];
 }
 #pragma mark  调整焦距
 - (void)handlePinchGesture:(UIPinchGestureRecognizer *)pinch {
@@ -214,14 +273,40 @@
 - (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:(UIDeviceOrientation)deviceOrientation {
     
     AVCaptureVideoOrientation result = (AVCaptureVideoOrientation)deviceOrientation;
+    
     if (deviceOrientation == UIDeviceOrientationLandscapeLeft) {
         result = AVCaptureVideoOrientationLandscapeRight;
     } else if (deviceOrientation == UIDeviceOrientationLandscapeRight) {
         result = AVCaptureVideoOrientationLandscapeLeft;
     }
+    
+    
     return  result;
 }
 
+
+#pragma mark - 识别人脸
+- (void)captureFace {
+    
+    AVCaptureMetadataOutput *metadataOutput = [[AVCaptureMetadataOutput alloc] init];
+    [metadataOutput setMetadataObjectsDelegate:self queue:_sessionQueue];
+    if ([self.session canAddOutput:metadataOutput]) {
+        [self.session addOutput:metadataOutput];
+    }
+    
+    metadataOutput.metadataObjectTypes = @[AVMetadataObjectTypeFace];
+    
+}
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
+    
+    for (AVMetadataObject *metadataObject in metadataObjects) {
+        if (metadataObject.type == AVMetadataObjectTypeFace) {
+            [self.previewLayer transformedMetadataObjectForMetadataObject:metadataObject];
+        }
+    }
+    
+}
 
 #pragma mark - 拍照按钮 ???
 - (IBAction)takePhotoButton:(UIButton *)sender {
@@ -233,7 +318,7 @@
     UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
     AVCaptureVideoOrientation avcaptureOrientation = [self avOrientationForDeviceOrientation:curDeviceOrientation];
     
-    [stillImageConnection setVideoOrientation:avcaptureOrientation];
+//    [stillImageConnection setVideoOrientation:avcaptureOrientation];
     
     // 控制焦距
     [stillImageConnection setVideoScaleAndCropFactor:self.effectiveScale];
@@ -269,9 +354,12 @@
 
 #pragma mark - 闪光灯
 - (IBAction)flashButton:(UIButton *)sender {
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+   AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     [device lockForConfiguration:nil];
+    
+    // 设置对焦模式
+    device.focusMode = AVCaptureFocusModeContinuousAutoFocus;
     
     // 先判断设备是否有闪光灯
     if ([device hasFlash]) {
@@ -333,20 +421,10 @@
         }
     }
     
-//    [self.session stopRunning];
     [UIView transitionWithView:self.backgroundView duration:0.6 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-        
-        
-
-        
-        
-
-        
-        
         
     } completion:^(BOOL finished) {
         
-//        [self.session startRunning];
             }];
     
     self.isFrontCamera = !self.isFrontCamera;
@@ -384,8 +462,8 @@
     
     EditingPhotoViewController *editingVC = [[EditingPhotoViewController alloc] init] ;
     
-    
     editingVC.editingImageData = self.imageData;
+    editingVC.isFront = _isFrontCamera;
     [self.navigationController pushViewController:editingVC animated:YES];
 }
 

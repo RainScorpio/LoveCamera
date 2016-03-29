@@ -11,5 +11,6 @@
 @interface EditingPhotoViewController : UIViewController
 
 @property (nonatomic, strong) NSData *editingImageData;
+@property (nonatomic, assign) BOOL isFront;
 
 @end

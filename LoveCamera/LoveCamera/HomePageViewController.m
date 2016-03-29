@@ -10,8 +10,9 @@
 #import "CustomCameraViewController.h"
 #import "Utility.h"
 #import "HomePageView.h"
+#import "EditingPhotoViewController.h"
 
-@interface HomePageViewController ()<HomePageViewDelegate>
+@interface HomePageViewController ()<HomePageViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
@@ -31,6 +32,31 @@
 - (void)takePhoto {
     CustomCameraViewController *ccVC = [[CustomCameraViewController alloc] init];
     [self.navigationController pushViewController:ccVC animated:YES];
+}
+
+- (void)fetchPhotoes {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    
+    
+    
+    
+    EditingPhotoViewController *editingVC = [[EditingPhotoViewController alloc] init] ;
+    
+    
+    editingVC.editingImageData = UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0);
+    [self.navigationController pushViewController:editingVC animated:YES];
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

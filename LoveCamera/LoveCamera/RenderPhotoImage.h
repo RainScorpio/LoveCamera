@@ -15,8 +15,7 @@
 
 @property (nonatomic, strong) CIImage *inputCIImage;
 
-- (UIImage *)senderOutputImage:(UIImage *)inputImage index:(NSUInteger)imageIndex;
-- (NSString *)senderLabelText:(NSUInteger)imageIndex;
+- (UIImage *)senderOutputImage:(UIImage *)inputImage index:(NSUInteger)imageIndex front:(BOOL)isFront;
 + (instancetype)shareRenderPhotoImage;
 
 @end
