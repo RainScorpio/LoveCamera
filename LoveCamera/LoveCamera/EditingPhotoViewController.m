@@ -57,7 +57,7 @@
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
     [_editingImageCollectionView registerClass:[PhotoFilterCollectionViewCell class] forCellWithReuseIdentifier:@"photoFilterCell"];
-     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:0 front:self.isFront];
+     _editingImageView.image = [[[RenderPhotoImage alloc] init] senderOutputImage:[UIImage imageWithData:_editingImageData] index:0 front:self.isFront];
 
     self.savedImages = [NSMutableArray array];
     self.didSelectIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -103,7 +103,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PhotoFilterCollectionViewCell *photoFilterCell = (PhotoFilterCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"photoFilterCell" forIndexPath:indexPath];
-    photoFilterCell.displayImage = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item front:self.isFront];
+    photoFilterCell.displayImage = [[[RenderPhotoImage alloc] init] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item front:self.isFront];
 //    photoFilterCell.text = [[RenderPhotoImage shareRenderPhotoImage] senderLabelText:indexPath.item];
     return photoFilterCell;
     
@@ -112,7 +112,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.didSelectIndexPath = indexPath;
-     _editingImageView.image = [[RenderPhotoImage shareRenderPhotoImage] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item front:self.isFront];
+     _editingImageView.image = [[[RenderPhotoImage alloc] init] senderOutputImage:[UIImage imageWithData:_editingImageData] index:indexPath.item front:self.isFront];
     
     if ([self.savedImages containsObject:indexPath]) {
         [self.saveButton setTitle:@"     已保存" forState:UIControlStateNormal];

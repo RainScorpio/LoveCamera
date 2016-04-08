@@ -26,6 +26,10 @@
     _window.rootViewController = navi;
     
     
+
+    
+    
+    
     return YES;
 }
 

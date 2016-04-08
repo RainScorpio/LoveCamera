@@ -69,8 +69,8 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
             NSLog(@"创建成功.");
             PHFetchResult *loveCameraAssetFetchResult = [PHCollection fetchTopLevelUserCollectionsWithOptions:nil];
             PHCollection *myCollection = loveCameraAssetFetchResult.lastObject;
-            [[NSUserDefaults standardUserDefaults] setObject:myCollection.localIdentifier forKey:localIdentifier];
-
+           
+            [[NSUserDefaults standardUserDefaults] setValue:myCollection.localIdentifier  forKey:localIdentifier];
             self.albumAssetCollection = loveCameraAssetFetchResult.lastObject;
             [self saveAction:_saveImage];
         }
@@ -112,15 +112,15 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
     
     self.saveImage = image;
     
-    self.albumAssetCollection = [self getLoveCameraAssetCollection];
-    if (!_albumAssetCollection) {
+    NSString *strIden = [[NSUserDefaults standardUserDefaults] stringForKey:localIdentifier];
+    if (strIden) {
+        self.albumAssetCollection = [self getLoveCameraAssetCollection];
+        [self saveAction:image];
+        
+    } else {
         
         [self createNewAlbum];
-        return;
     }
-    
-    [self saveAction:image];
-
     
     
     
@@ -129,7 +129,9 @@ static NSString * const localIdentifier = @"LoveCameraLocalIdentifier";
 
 - (PHAssetCollection *)getLoveCameraAssetCollection {
     
-    return [[PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[[[NSUserDefaults standardUserDefaults] stringForKey:localIdentifier]] options:nil] firstObject];
+    PHAssetCollection *ac = [[PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[[[NSUserDefaults standardUserDefaults] stringForKey:localIdentifier]] options:nil] firstObject];
+    
+    return ac;
 }
 
 

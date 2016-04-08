@@ -59,11 +59,10 @@
     self.navigationController.navigationBarHidden = YES;
     self.takePhotoButton.layer.cornerRadius = self.takePhotoButton.frame.size.width / 2;
     // 设置session及相关配置.
-    self.sessionQueue = dispatch_queue_create("com.rain.LoveCamera", DISPATCH_QUEUE_SERIAL);
+//    self.sessionQueue = dispatch_queue_create("com.rain.LoveCamera", DISPATCH_QUEUE_SERIAL);
     
     [self createAVCaptureSession];
     
-#pragma mark - 调整焦距会把其他控件挡住???
     // 创建缩放手势, 调整焦距.
     [self addPinchGesture];
     
@@ -79,11 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     if (self.session) {
-        dispatch_async(_sessionQueue, ^{
-            
-            [self.session startRunning];
-        });
-        
+        [self.session startRunning];
     }
     
     [self changeUI:NO];
@@ -98,10 +93,10 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidAppear:YES];
     if (self.session) {
-            dispatch_async(_sessionQueue, ^{
-                
-                [self.session stopRunning];
-            });
+        [self.session stopRunning];
+//            dispatch_async(_sessionQueue, ^{
+//                
+//            });
     }
 }
 
@@ -189,7 +184,7 @@
     }
     
     
-    [self captureFace];
+//    [self captureFace];
 }
 
 

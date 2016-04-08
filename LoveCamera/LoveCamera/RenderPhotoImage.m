@@ -48,12 +48,9 @@
                                      @"Process": @"CIPhotoEffectProcess",
                                      @"Transfer": @"CIPhotoEffectTransfer",
                                      @"Instant" :@"CIPhotoEffectInstant",
-                                     
                                      @"Matrix": @"CIColorMatrix",
-                                     
                                      @"SRGBToneCure": @"CILinearToSRGBToneCurve",
                                      @"TemperatureAndTint": @"CITemperatureAndTint",
-                                     
                                      
                                      @"CIColorInvert": @"CIColorInvert",
                                      
@@ -63,8 +60,6 @@
                                      @"CILineOverlay": @"CILineOverlay"
                                      };
         
-        //kCICategoryStillImage, kCICategoryBuiltIn, kCICategoryFilterGenerator
-//        self.filterTitle = [CIFilter filterNamesInCategories:@[kCICategoryStillImage]];
         self.filtersArray = [NSMutableArray array];
         for (NSString *key in _filtersDic) {
             
